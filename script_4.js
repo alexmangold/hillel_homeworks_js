@@ -64,8 +64,10 @@ console.log(resultCirc);
 Задание 3
 */
 
-function calcAverage(sum) {
-    return sum / 2;
+//calcAverage получает две переменные
+
+function calcAverage(a, b) {
+    return (Number(a) + Number(b)) / 2;
 }
 
 function getAverage() {
@@ -79,7 +81,7 @@ function getAverage() {
     if (a !== null && b !== null) {
         if (isValid) {
             sum = Number(a) + Number(b);
-            average = calcAverage(sum);
+            average = calcAverage(a, b);
         } else {
             return "Ошибка";
         }
@@ -98,6 +100,8 @@ console.log(resultAverage);
 Задание 4
 */
 
+//Вариант с default
+
 function calcOperation(x, y, action) {
     switch (action) {
         case "+":
@@ -110,6 +114,7 @@ function calcOperation(x, y, action) {
             return Number(x) / Number(y);
         case "^":
             return Number(x) ** Number(y);
+        default: return;
     }
 }
 
@@ -123,7 +128,7 @@ function getOperation() {
     let actionIsValid = action === "+" || action === "-" || action === "*" || action === "/" || action === "^";
 
     if (x !== null && y !== null && action !== null) {
-        if (varIsValid && actionIsValid) {
+        if (varIsValid) {
             operation = calcOperation(x, y, action);
         } else {
             return "Ошибка";
@@ -132,7 +137,11 @@ function getOperation() {
         return ":(";
     }
 
-    return x + " " + action + " " + y + " = " + operation;
+        if (actionIsValid) {
+            return x + " " + action + " " + y + " = " + operation;
+        } else {
+            return "Неправильное действие";
+        }
 }
 
 const resultOperation = getOperation();
