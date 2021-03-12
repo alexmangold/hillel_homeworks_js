@@ -59,14 +59,10 @@ const company = {
     }
 };
 
-console.log(company);
+console.log(`Original:`, company);
 
 function isObject(something) {
-    if (typeof something === "object" && something !== null) {
-        return true;
-    } else {
-        false;
-    }
+    return typeof something === "object" && something !== null && !Array.isArray(something);
 }
 
 function deepCopy(something) {
@@ -80,15 +76,19 @@ function deepCopy(something) {
         const result = [];
         for (const element of something) {
             const clone = deepCopy(element);
-            result.push = clone;
+            result.push(clone);
         }
         return result;
     }
     return something;
 }
 
+// const test = [1, 2, 3];
+// console.log(test);
+
 const clone = deepCopy(company);
-console.log(clone);
+console.log(`Clone:`, clone);
+console.log(`Clone !== Original is`, clone !== company)
 
 /*
 Задание 2
