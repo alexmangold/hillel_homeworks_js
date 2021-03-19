@@ -1,7 +1,6 @@
 "use strict"
 
 const mainContainer = document.querySelector(".container");
-
 // Input + Add button
 function createInputField() {
     const inputField = document.createElement("form");
@@ -21,14 +20,12 @@ function createInputField() {
 
     return { inputField, input, inputButton }
 }
-
 // User list container
 function createListContainer() {
     const list = document.createElement("section");
     list.classList.add("list");
     return list;
 }
-
 //Edit user name
 function createUserName(name) {
     const userName = prompt("Create new name");
@@ -39,7 +36,6 @@ function createUserName(name) {
         return name;
     }
 }
-
 // New list item + edit/remove events
 function createListItem(userName) {
     const listItem = document.createElement("article");
@@ -66,7 +62,6 @@ function createListItem(userName) {
 
     return listItem;
 }
-
 // Edit/Remove Buttons
 function createListButtons() {
     const listButtons = document.createElement("div");
@@ -87,28 +82,31 @@ function createListButtons() {
 
     return { listButtons, editButton, removeButton };
 }
-
 // Default users list
-function createDefaultUserList() {
+function createDefaultUserList(defaultUsers) {
     const defaultList = {};
+    /*
     const defaultUsers = ["User 1", "User 2", "User 3", "User 3", "User 4", "User 5"];
+    сделал получение параметров пользователей по умолчанию извне для большей гибкости?
+    */
     for (const user of defaultUsers) {
         defaultList[user] = createListItem(user);
     }
     return defaultList;
 }
-
 //Final stage
-function createUserList() {
+function createUserList(defaultUsers) {
     const inputFieldContainer = createInputField();
     const input = inputFieldContainer.input;
     const addButton = inputFieldContainer.inputButton;
 
     const listContainer = createListContainer();
     // Create default list
-    const defaultList = createDefaultUserList();
-    for (const user in defaultList) {
-        listContainer.appendChild(defaultList[user]);
+    if (defaultUsers) {
+        const defaultList = createDefaultUserList(defaultUsers);
+        for (const user in defaultList) {
+            listContainer.appendChild(defaultList[user]);
+        }
     }
     //Button Add Event
     addButton.addEventListener("click", function (event) {
@@ -125,7 +123,7 @@ function createUserList() {
     return { inputFieldContainer, listContainer };
 }
 
-const list = createUserList();
+const list = createUserList(["User 1", "User 2", "User 3", "User 3", "User 4", "User 5"]);
 
 mainContainer.appendChild(list.inputFieldContainer.inputField);
 mainContainer.appendChild(list.listContainer);
