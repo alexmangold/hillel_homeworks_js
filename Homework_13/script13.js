@@ -11,7 +11,7 @@ document.body.appendChild(span2);
 document.body.appendChild(span3);
 document.body.appendChild(span4);
 
-//
+// UNIT
 
 function Unit(type, health, maxHealth, maxDistance) {
     this.type = type;
@@ -35,13 +35,12 @@ Unit.prototype.restore = function () {
 };
 
 Unit.prototype.clone = function () {
-    const unitCopy = {};
-    for (const key in this) {
-        unitCopy[key] = this[key];
-    }
-    const newUnit = new Unit(unitCopy.type, unitCopy.health, unitCopy.maxHealth, unitCopy.maxDistance);
+    const newUnit = new Unit(this.type, this.health, this.maxHealth, this.maxDistance);
+
     return newUnit;
 };
+
+// ARMY
 
 function Army(defaultUnits) {
     this.units = [];
@@ -51,7 +50,7 @@ function Army(defaultUnits) {
 
 Army.prototype.isReadyToMove = function (distance) {
     for (const element of this.units) {
-        if (+distance > +element.maxDistance) {
+        if (!element.isReadyToMove(distance)) {
             return false;
         }
     }
@@ -61,7 +60,7 @@ Army.prototype.isReadyToMove = function (distance) {
 
 Army.prototype.isReadyToFight = function () {
     for (const element of this.units) {
-        if (!(+element.health / +element.maxHealth >= 0.5)) {
+        if (!element.isReadyToFight()) {
             return false;
         }
     }
@@ -71,9 +70,7 @@ Army.prototype.isReadyToFight = function () {
 
 Army.prototype.restore = function () {
     for (const element of this.units) {
-        if ((+element.health < +element.maxHealth)) {
-            element.health = element.maxHealth;
-        }
+        element.restore();
     }
 };
 
@@ -81,7 +78,7 @@ Army.prototype.getReadyToMoveUnits = function (distance) {
     const readyUnits = [];
 
     for (const element of this.units) {
-        if (+distance <= +element.maxDistance) {
+        if (element.isReadyToMove(distance)) {
             readyUnits.push(element);
         }
     }
@@ -105,20 +102,20 @@ Army.prototype.cloneUnit = function (index) {
 
 //ПРОВЕРКИ
 const unit1 = new Unit("knight", 100, 100, 100);
-const unit2 = new Unit("archer", 30, 80, 30);
+const unit2 = new Unit("archer", 30, 80, 30); // to be restored
 const unit3 = unit1.clone();
 const unit4 = new Unit("warlock", 60, 60, 10);
 const unit5 = unit4.clone();
 
 const army = new Army([unit1, unit2, unit3]);
+army.restore();
 span1.innerText = JSON.stringify(army);
 army.combineUnits([unit4, unit5]);
 span2.innerText = JSON.stringify(army);
-/*
-У меня появилась идея создавать новую армию из массива готовых юнитов, но я не уверен, что это правильное решение, потом оставлю оба варианта
-*/
+console.log(army.isReadyToMove(10));
+console.log(`Army is ready to fight: ${army.isReadyToFight()}`);
+
 const readyArmy = army.getReadyToMoveUnits(30);
-// const readyArmy = new Army(army.getReadyToMoveUnits(30));
 span3.innerText = JSON.stringify(readyArmy);
 
 //2
@@ -128,7 +125,7 @@ const sex = {
     female: "female"
 }
 
-function Animal(sex, x, y) { // не очень понятно как нужно реализовать прыжок, поэтому я сделал возможность прыгать вверх и прыгать вниз для изменения у
+function Animal(sex, x, y) {
     this.sex = sex;
     this.x = x;
     this.y = y;
