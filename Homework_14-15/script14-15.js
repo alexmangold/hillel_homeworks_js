@@ -2,10 +2,8 @@
 //
 const select = document.querySelector("select");
 const containers = createTimeContainers();
-const styleSheets = document.querySelector("style");
 
 function createTimeContainers() {
-
     const hoursContainer = document.createElement("div");
     hoursContainer.classList.add("time_container", "hours");
     hoursContainer.hidden = true;
@@ -108,7 +106,6 @@ function changeDateFormat(format) {
             containers.hoursContainer.hidden = false;
             containers.minutesContainer.hidden = false;
             containers.middayContainer.hidden = false;
-
             break;
 
         case "YYYY-MM-DD HH:MM":
@@ -132,7 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
     for (const key in containers) {
         container.appendChild(containers[key]);
     }
+
     changeDateFormat(select.value);
+
     setInterval(displayTime, 1000);
 })
 
