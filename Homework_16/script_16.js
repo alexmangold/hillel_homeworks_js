@@ -15,7 +15,7 @@ function createUserList(defaultUsers) {
     const listContainer = createListContainer(); // 3
 
     // 4
-    const defaultList = usersArray === null || usersArray.length === 0 ? createDefaultUserList(defaultUsers) : createDefaultUserList(usersArray); //!!!!
+    const defaultList = usersArray === null || usersArray.length === 0 ? createDefaultUserList(defaultUsers) : createDefaultUserList(usersArray);
     for (const user in defaultList) {
         listContainer.appendChild(defaultList[user]);
     }
@@ -81,7 +81,7 @@ function createListItem(userName) {
     listName.classList.add("list_name");
     listName.innerText = userName;
 
-    if (!usersArray.includes(userName)) { // ADDING A USER TO LOCAL STORAGE
+    if (!usersArray.includes(userName)) { 
         usersArray.push(userName);
         localStorage.setItem('users', JSON.stringify(usersArray));
     }
@@ -90,16 +90,16 @@ function createListItem(userName) {
 
     // Edit Event
     listButtons.editButton.addEventListener("click", function () {
-        let newIndex = usersArray.indexOf(listName.innerText); //!!!!!
+        let newIndex = usersArray.indexOf(listName.innerText); 
         listName.innerText = createUserName(listName.innerText); // -> 7
-        usersArray[newIndex] = listName.innerText; //!!!!!!
-        localStorage.setItem('users', JSON.stringify(usersArray)); //!!!!!
+        usersArray[newIndex] = listName.innerText; 
+        localStorage.setItem('users', JSON.stringify(usersArray)); 
     });
 
     //Remove Event
     listButtons.removeButton.addEventListener("click", function () {
         if (confirm("Are you sure?")) {
-            let newIndex = usersArray.indexOf(listName.innerText); //!!!!!
+            let newIndex = usersArray.indexOf(listName.innerText); 
             usersArray.splice(newIndex, 1);
             localStorage.setItem('users', JSON.stringify(usersArray));
 
