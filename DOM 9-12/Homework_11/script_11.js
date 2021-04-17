@@ -7,7 +7,7 @@ const colors = ["cornflowerblue", "yellowgreen", "gold", "mediumorchid", "coral"
 function createSquareElements(colors) {
     const article = document.createElement("article");
     article.classList.add("square");
-    article.style.backgroundColor = colors[Math.round(Math.random() * (colors.length - 1))]; // изначально сеттил color[0], но так веселее (надеюсь, не проблема :) )
+    article.style.backgroundColor = colors[Math.round(Math.random() * (colors.length - 1))];
 
     article.addEventListener("click", function (event) {
         if (event.target.tagName.toLowerCase() === "button") {
