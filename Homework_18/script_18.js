@@ -2,7 +2,7 @@
 
 const container = document.querySelector(".container");
 
-const pages = 34;
+const pages = 35;
 
 class Page {
     static #currentPage = 1;
@@ -101,7 +101,7 @@ function loadData(target, createListItem) {
                 return res.json();
             }
 
-            throw new Error(`INVALID PAGE ${res.status}`);
+            return Promise.reject(new Error(`INVALID PAGE ${res.status}`));
         })
         .then((data) => {
             createListItem(target, data.results);
