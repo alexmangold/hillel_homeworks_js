@@ -2,7 +2,7 @@
 
 const container = document.querySelector(".container");
 
-const pages = 35;
+const pages = 34;
 
 class Page {
     static #currentPage = 1;
