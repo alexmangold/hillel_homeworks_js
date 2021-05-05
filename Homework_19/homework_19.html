@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Басок, Lesson 23, H/W 19</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            font-family: 'Roboto', sans-serif;
+            font-size: 17px;
+            text-shadow: 1px 3px 4px #000000;
+        }
+
+        .container {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            margin: 15px;
+            padding: 5px;
+
+            max-width: 500px;
+            height: 480px;
+
+            border: 5px solid slategray;
+            border-radius: 30px;
+        }
+
+        .input {
+            padding: 10px 20px 10px 20px;
+            border-bottom: 5px solid slategray;
+
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+        .chat_container {
+            box-sizing: border-box;
+
+            /* position: relative; */
+
+            display: flex;
+            flex-direction: column;
+
+            margin: 15px;
+
+            max-width: 500px;
+            max-height: 80%;
+
+            overflow: scroll;
+        }
+
+        .input_field {
+            margin: 5px;
+            padding: 5px;
+
+            min-width: 333px;
+            min-height: 20px;
+            width: fit-content;
+            height: fit-content;
+
+            border: none;
+        }
+
+        .btn {
+            margin: 5px;
+            padding: 5px 10px 5px 10px;
+            border: 2px solid cornflowerblue;
+            border-radius: 10px;
+            font: inherit;
+        }
+
+        .user_message {
+            position: relative;
+
+            padding: 10px 15px 10px 15px;
+            margin: 10px;
+            margin-left: auto;
+
+            min-width: auto;
+            width: fit-content;
+            height: fit-content;
+
+            border: none;
+            border-radius: 30px;
+
+            text-align: left;
+            color: honeydew;
+
+            background-image: linear-gradient(to right, cornflowerblue, rgb(148, 138, 209));
+        }
+
+        .bot_message {
+            padding: 10px 15px 10px 15px;
+            margin: 10px;
+            margin-right: auto;
+
+            min-width: auto;
+            width: fit-content;
+            height: fit-content;
+
+            border: none;
+            border-radius: 30px;
+
+            text-align: left;
+            color: honeydew;
+            font-style: italic;
+
+            background-image: linear-gradient(to bottom, rgb(107, 197, 107), rgb(45, 145, 83));
+        }
+
+        .chat_end {
+            margin: auto auto 0 auto;
+            text-shadow: none;
+        }
+
+        .options_container {
+            margin: 15px 0 0 100px;
+            padding: 20px;
+            font-size: 20px;
+            text-shadow: none;
+
+            width: 200px;
+            height: 250px;
+
+            border: 5px solid slategray;
+            border-radius: 30px;
+        }
+    </style>
+    <script src="script_19.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+</body>
+
+</html>
